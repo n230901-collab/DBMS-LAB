@@ -1,0 +1,17 @@
+create database gram_panchayat_db;
+show databases;
+use gram_panchayat_db;
+create table Citizen ( citizenID int primary key, name varchar(100) not null, DOB date not null,gender varchar(10) not null,mobileNumber varchar(15) unique not null,occupation varchar(50),villageName varchar(50) not null,isActive boolean not null);
+insert into citizen values(11,'krishna','2005-09-04','male',9381142567,'GOD','Dwaraka',true),(12,'rukmini','2007-09-24','female',9381842143,'Goddess','dwaraka',true),(13,'RAM','1999-05-15','male',9553242215,'archer','Ayodhya',true),(14,'RAGHU','2006-09-24','male',9381174162,'IAS','RC_Puram',true);
+show tables;
+select * from citizen;
+create table certificate_type(certificateTypeID INT primary key,certificateName varchar(100) unique not null,description varchar(200) not null,processingDays int not null,applicationFee decimal(8,2) not null,isAvailable boolean not null);
+insert into certificate_type values(1,'property certificate','the world is his territory',6,24.4,TRUE),(2,'marriage certificate','issued the marriage certificate',5,30.00,true),(3,'residence certificate','certifies the declared place of residance',10,20.00,true),(4,'birth certificate','certifies the birth record',8,15.00,true);
+select *from certificate_type ;
+create table certificateApplication(applicationID int primary key,citizenID int not null, certificateName varchar(100) not null,applicationDate date not null,purpose varchar(200) not null,applicationStatus varchar(30) not null,feePaid decimal not null,referenceNumber varchar(30) unique not null);
+insert into certificateApplication values(101,11,'property certificate','2026-07-01','to built', 'submitted',30.00,'GP121'),(102,12,'marriage certificate','2026-01-01','personal','submitted',25.00,'GP122'),(103,13,'residance certificate','2026-06-05','confirmation of residance','submitted',20.00,'GP123'),(104,14,'birth certificate','2026-04-03','college applicarion','submitted',10.00,'GP124');
+create table panchayatOffice(officeID int primary key,officeName varchar(100) not null,villageName varchar(50) not null,pincode varchar(6) not null,contactNumber varchar(15) unique,officeEmail varchar(50) unique,openingTime time not null,isOperational boolean not null);
+insert into panchayatOffice values(21,'RC_Puaram gramPanchayat','RC_Puram','524201','08674563','puram@gmail.com','09:00:00',true),(22,'thallapalem gramPanchayat','thallapalem','524202','008427851','thallapalem13@gmail.com','09:30:00',true),(23,'lingamguta gramPanchayat','lingamgunta','524203','006473773','thallapalem12@gmail.com','08:30:00',true),(24,'kavali gramPanchayat','kavali','524201','005678638','kavali14@gmail.com','09:00:00',true);
+select * from panchayatOffice;
+insert into citizen values(15,'shiva','2000-03-09','male','9100490212','farmer','kailash',true);
+alter table citizen add address varchar(200);
